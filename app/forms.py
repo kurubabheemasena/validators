@@ -1,4 +1,5 @@
 from django import forms
+from django.core import validators
 
 def validators_for_h(value):
     if value[0]=='h':
@@ -13,7 +14,8 @@ class NameForm(forms.Form):
     age=forms.IntegerField()
     mail=forms.EmailField(max_length=100)
     remail=forms.EmailField(max_length=100)
-    botcatcher=forms.CharField(max_length=100,widget=forms.HiddenInput,required=True  #Fale(remove and insert))
+    mobileN=forms.CharField(max_length=10,min_length=10,validators=[validators.RegexValidator('[6-9]\d{9}')])
+    botcatcher=forms.CharField(max_length=100,widget=forms.HiddenInput,required=False)#true
 
 
     def clean(self):
